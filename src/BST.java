@@ -77,6 +77,19 @@ class BST<E extends Comparable<E>> {
    */
   public int recursiveSize() {
     // You will need a recursive helper method!
+    if (root == null) {
+      return 0;
+    } else {
+      return recursiveSize(root.left()) + recursiveSize(root.right()) + 1;
+    }
+  }
+
+  /**
+   * Helper Method for Recursive Size method.
+   * @param node - root node being searched
+   * @return - number of nodes below root given.
+   */
+  public int recursiveSize(BSTNode node) {
     return -1;
   }
 
@@ -84,14 +97,36 @@ class BST<E extends Comparable<E>> {
    * Return the smallest element in the tree.
    */
   public E minElement() {
-    return null;
+    if (root == null) {
+      return null;
+    }
+    return minElement(root).element();
+  }
+
+  public BSTNode<E> minElement(BSTNode<E> node) {
+    if (node.isLeaf() || node.left() == null) {
+      return node;
+    } else {
+      return minElement(node.left());
+    }
   }
 
   /**
    * Return the largest element in the tree.
    */
   public E maxElement() {
-    return null;
+    if (root == null) {
+      return null;
+    }
+    return maxElement(root).element();
+  }
+
+  public BSTNode<E> maxElement(BSTNode<E> node) {
+    if (node.isLeaf() || node.right() == null) {
+      return node;
+    } else {
+      return maxElement(node.right());
+    }
   }
 
   /**
